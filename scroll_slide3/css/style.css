@@ -38,6 +38,10 @@
   height: 300px;
 }
 
+.bar:hover {
+  fill: brown;
+}
+
 #vis {
   display: inline-block;
   position: fixed;

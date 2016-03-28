@@ -44,6 +44,11 @@ var scrollVis = function() {
   var xAxisBar = d3.svg.axis()
     .scale(xBarScale)
     .orient("bottom");
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> master
   
   // The bar chart display is horizontal
   // so we can use an ordinal scale
@@ -51,6 +56,13 @@ var scrollVis = function() {
   var yBarScale = d3.scale.ordinal()
     .domain([0,1,2])
     .rangeBands([0, height - 50], 0.1, 0.1);
+<<<<<<< HEAD
+=======
+
+  var yAxisBar = d3.svg.axis()
+    .scale(yBarScale)
+    .orient("left")    
+>>>>>>> master
  
   // Color is determined just by the index of the bars
   var barColors = {0: "#ff4d4d", 1: "#399785", 2: "#98abc5"};
@@ -58,7 +70,11 @@ var scrollVis = function() {
   // stacked bar axis
    var xStackScale = d3.scale.ordinal()
     .domain([0,1,2,3,4,5])
+<<<<<<< HEAD
     .rangeBands([0, width - 20], 0.1, 0.1);
+=======
+    .rangeBands([20, width - 20], 0.1, 0.1);
+>>>>>>> master
       
   var yStackScale = d3.scale.linear()
     .range([height,0]);
@@ -169,13 +185,26 @@ var scrollVis = function() {
    */
   setupVis = function(overall_sentiment,overall_sentimentairline) {
     // axis
+<<<<<<< HEAD
+=======
+    debugger
+>>>>>>> master
     g.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxisBar);
     g.select(".x.axis").style("opacity", 0);
 
+<<<<<<< HEAD
     
+=======
+    g.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(20,0)")
+      .call(yAxisBar);
+    g.select(".y.axis").style("opacity", 0);
+
+>>>>>>> master
 
     // count openvis title
     g.append("text")
@@ -346,22 +375,38 @@ var scrollVis = function() {
     hideAxis();
     g.selectAll(".count-title")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);
 
     g.selectAll(".fig1")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);  
       
 
     g.selectAll(".openvis-title")
       .transition()
+<<<<<<< HEAD
       .duration(600)
       .attr("opacity", 1.0);
     g.selectAll(".fig2")
       .transition()
       .duration(0)
+=======
+      .duration(1200)
+      .attr("opacity", 1.0);
+    g.selectAll(".fig2")
+      .transition()
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);  
   }
 
@@ -377,22 +422,38 @@ var scrollVis = function() {
     hideAxis();
     g.selectAll(".openvis-title")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);
 
     g.selectAll(".fig1")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);
 
     g.selectAll(".fig2")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);  
 
     g.selectAll(".count-title")
       .transition()
+<<<<<<< HEAD
       .duration(600)
+=======
+      .duration(1200)
+>>>>>>> master
       .attr("opacity", 1.0);
   }
 
@@ -406,6 +467,7 @@ var scrollVis = function() {
    */
 
   function showBar_overall() {
+<<<<<<< HEAD
     showAxis(xAxisBar);
 
     g.selectAll(".count-title")
@@ -420,31 +482,74 @@ var scrollVis = function() {
       .transition()
       .duration(0)
       .attr("opacity", 1);   
+=======
+
+    hideAxis();
+    showAxisX(xAxisBar);
+
+    g.selectAll(".count-title")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);
+    g.selectAll(".fig2")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);   
+    g.selectAll(".fig1")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 1);   
+    g.selectAll(".fig2")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);   
+>>>>>>> master
   }
 
 
   function showBar_airline() {
 
     hideAxis();
+<<<<<<< HEAD
     showAxis(xAxisStack);
 
     g.selectAll(".count-title")
       .transition()
       .duration(0)
+=======
+    showAxisX(xAxisStack);
+    showAxisY(yAxisStack);
+
+    g.selectAll(".count-title")
+      .transition()
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);
 
     g.selectAll(".fig1")
       .transition()
+<<<<<<< HEAD
       .duration(0)
+=======
+      .duration(600)
+>>>>>>> master
       .attr("opacity", 0);
 
     g.selectAll(".openvis-title")
       .transition()
+<<<<<<< HEAD
       .duration(0)
       .attr("opacity", 0);    
     g.selectAll(".fig2")
       .transition()
       .duration(0)
+=======
+      .duration(600)
+      .attr("opacity", 0);    
+    g.selectAll(".fig2")
+      .transition()
+      .duration(1200)
+>>>>>>> master
       .attr("opacity", 1);    
   }
 
@@ -459,10 +564,23 @@ var scrollVis = function() {
    * @param axis - the axis to show
    *  (xAxisHist or xAxisBar)
    */
+<<<<<<< HEAD
   function showAxis(axis) {
     g.select(".x.axis")
       .call(axis)
       .transition().duration(500)
+=======
+  function showAxisX(axis) {
+    g.select(".x.axis")
+      .call(axis)
+      .transition().duration(600)
+      .style("opacity", 1);
+  }
+  function showAxisY(axis) {
+    g.select(".y.axis")
+      .call(axis)
+      .transition().duration(600)
+>>>>>>> master
       .style("opacity", 1);
   }
 
@@ -473,8 +591,17 @@ var scrollVis = function() {
    */
   function hideAxis() {
     g.select(".x.axis")
+<<<<<<< HEAD
       .transition().duration(500)
       .style("opacity",0);
+=======
+      .transition().duration(600)
+      .style("opacity",0);
+    g.select(".y.axis")
+      .transition().duration(600)
+      .style("opacity",0);
+    
+>>>>>>> master
   }
 
   /**

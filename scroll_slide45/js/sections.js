@@ -64,10 +64,10 @@ var scrollVis = function() {
   // stacked bar axis
    var xStackScale = d3.scale.ordinal()
     .domain([0,1,2,3,4,5])
-    .rangeBands([20, width - 20], 0.1, 0.1);
+    .rangeBands([20, width - 20], 0.3, 0.2);
       
   var yStackScale = d3.scale.linear()
-    .range([height,0]);
+    .range([height,6]);
 
   var colorStackedBar = d3.scale.ordinal()
     .range(["#ff4d4d", "#399785", "#98abc5"]);
@@ -75,10 +75,19 @@ var scrollVis = function() {
   var xAxisStack = d3.svg.axis()
     .scale(xStackScale)
     .orient("bottom");
+  
   var yAxisStack = d3.svg.axis()
     .scale(yStackScale)
     .orient("left")
     .tickFormat(d3.format(".2s"));  
+  
+  
+  var yStackScaleN = d3.scale.linear()
+    .range([height,6]);
+  
+  var yAxisStackN = d3.svg.axis()
+    .scale(yStackScaleN)
+    .orient("left")
   
   // The histogram display shows the
   // first 30 minutes of data
@@ -174,8 +183,7 @@ var scrollVis = function() {
    * @param histData - binned histogram data
    */
   setupVis = function(overall_sentiment,overall_sentimentairline) {
-    // axis
-    debugger
+    // Setting up overall visualization
     g.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -189,7 +197,7 @@ var scrollVis = function() {
     g.select(".y.axis").style("opacity", 0);
 
 
-    // count openvis title
+    // openvis title
     g.append("text")
       .attr("class", "title openvis-title")
       .attr("x", width / 2)
@@ -211,7 +219,7 @@ var scrollVis = function() {
     g.selectAll(".openvis-title")
       .attr("opacity", 0);
 
-    // count filler word count title
+    // Data description
     g.append("text")
       .attr("class", "title count-title highlight")
       .attr("x", width / 2)
@@ -223,15 +231,8 @@ var scrollVis = function() {
       .attr("x", width / 2)
       .attr("y", (height / 3) + (height / 5) )
       .text("Tweets");
-    
-
     g.selectAll(".count-title")
       .attr("opacity", 0);
-
-
-    
-
-   
    // figure 1: barchart_overall
     var bars = g.selectAll(".bar").data(overall_sentiment);
       bars.enter()
@@ -254,8 +255,6 @@ var scrollVis = function() {
       .style("font-size", "30")
       .attr("fill", "white")
       .attr("opacity", 0);
-
-
     var barText2 = g.selectAll(".bar-text2").data(overall_sentiment);
     barText2.enter()
       .append("text")
@@ -268,9 +267,9 @@ var scrollVis = function() {
       .style("font-size", "25")
       .attr("fill", "black")
       .attr("opacity", 0);  
-   
 
-    debugger;
+
+
     // figure 2: barchart_by_airline
     colorStackedBar.domain(["negative","neutral","positive"]);
     overall_sentimentairline.forEach(function(d) {
@@ -281,21 +280,44 @@ var scrollVis = function() {
       overall_sentimentairline.sort(function(a, b) { return b.total - a.total; });
     xStackScale.domain(overall_sentimentairline.map(function(d) { return d.airline; }));
     yStackScale.domain([0, d3.max(overall_sentimentairline, function(d) { return d.total; })]);  
-
-
-   
   var airline_plot = g.selectAll('.bar_airline')
           .data(overall_sentimentairline).enter()
           .append("g")
           .attr("class", "fig2 g")
           .attr("transform", function(d) { return "translate(" + xStackScale(d.airline) + ",0)"; });
-
   airline_plot.selectAll("rect")
       .data(function(d) { return d.sentiments; })
       .enter().append("rect")
       .attr("width", xStackScale.rangeBand())
       .attr("y", function(d) { return yStackScale(d.y1); })
       .attr("height", function(d) { return yStackScale(d.y0) - yStackScale(d.y1); })
+      .style("fill", function(d) { return colorStackedBar(d.name); });            
+
+
+      debugger;
+    // figure 3: barchart_by_airline
+    colorStackedBar.domain(["ng_ratio","nt_ratio","ps_ratio"]);
+    overall_sentimentairline.forEach(function(d) {
+      var y0 = 0;
+      d.sentimentsNorm = colorStackedBar.domain().map(function(name) { console.log(name);return {name: name, y0: y0, y1: y0 += +d[name]}; });
+      //d.total = d.sentiments[d.sentiments.length - 1].y1;
+      });
+
+    debugger;
+      overall_sentimentairline.sort(function(a, b) { return b.total - a.total; });
+    xStackScale.domain(overall_sentimentairline.map(function(d) { return d.airline; }));
+    yStackScaleN.domain([0, 1]);  
+  var airline_plot2 = g.selectAll('.bar_airline')
+          .data(overall_sentimentairline).enter()
+          .append("g")
+          .attr("class", "fig3 g")
+          .attr("transform", function(d) { return "translate(" + xStackScale(d.airline) + ",0)"; });
+  airline_plot2.selectAll("rect")
+      .data(function(d) { return d.sentimentsNorm; })
+      .enter().append("rect")
+      .attr("width", xStackScale.rangeBand())
+      .attr("y", function(d) { return yStackScaleN(d.y1); })
+      .attr("height", function(d) { return yStackScaleN(d.y0) - yStackScaleN(d.y1); })
       .style("fill", function(d) { return colorStackedBar(d.name); });            
 
     
@@ -315,6 +337,7 @@ var scrollVis = function() {
     activateFunctions[1] = showFillerTitle;
     activateFunctions[2] = showBar_overall;
     activateFunctions[3] = showBar_airline;
+    activateFunctions[4] = showBar_airlineNorm;
 
 
 
@@ -374,7 +397,11 @@ var scrollVis = function() {
     g.selectAll(".fig2")
       .transition()
       .duration(600)
-      .attr("opacity", 0);  
+      .attr("opacity", 0);    
+    g.selectAll(".fig3")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 0); 
   }
 
   /**
@@ -405,7 +432,11 @@ var scrollVis = function() {
     g.selectAll(".count-title")
       .transition()
       .duration(1200)
-      .attr("opacity", 1.0);
+      .attr("opacity", 1.0);   
+    g.selectAll(".fig3")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 0);
   }
 
   /**
@@ -438,6 +469,10 @@ var scrollVis = function() {
       .transition()
       .duration(600)
       .attr("opacity", 0);   
+    g.selectAll(".fig3")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 0);   
   }
 
 
@@ -464,9 +499,42 @@ var scrollVis = function() {
     g.selectAll(".fig2")
       .transition()
       .duration(1200)
-      .attr("opacity", 1);    
+      .attr("opacity", 1);   
+    g.selectAll(".fig3")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 0);     
   }
 
+   function showBar_airlineNorm() {
+
+    hideAxis();
+    showAxisX(xAxisStack);
+    showAxisY(yAxisStackN);
+
+    g.selectAll(".count-title")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);
+
+    g.selectAll(".fig1")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);
+
+    g.selectAll(".openvis-title")
+      .transition()
+      .duration(600)
+      .attr("opacity", 0);    
+    g.selectAll(".fig2")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 0);    
+    g.selectAll(".fig3")
+      .transition()
+      .duration(1200)
+      .attr("opacity", 1);    
+  }
 
 
   
@@ -623,8 +691,9 @@ var scrollVis = function() {
 
   // function to group by sentiment and airline.
   function groupByCount_sentimentairline(data) {
+   
     sentiment_order = ["negative","neutral","positive"];
-    dm = d3.nest()
+     /*dm = d3.nest()
       .key(function(d) { return d.airline; })
       .key(function(d) { return d.sentiment; })
       .sortKeys(function(a,b) { return sentiment_order.indexOf(a) - sentiment_order.indexOf(b); })
@@ -649,6 +718,24 @@ var scrollVis = function() {
                 //console.log(new_row);
                 sentiment_airline.push(new_row);
               }
+
+     */
+
+       var sentiment_airline = d3.nest()
+      .key(function(d) { return d.airline; })
+      .key(function(d) { return d.sentiment; }).sortKeys(function(a,b) { return sentiment_order.indexOf(a) - sentiment_order.indexOf(b); })
+      .rollup(function(v) { return v.length; })
+      .entries(data)
+      .map(function(d) {
+        var data_ret = {"airline":d.key,"negative":d.values[0].values,"neutral":d.values[1].values,"positive":d.values[2].values,
+                        "total":d.values[0].values+d.values[1].values+d.values[2].values,
+                      };
+        data_ret['ps_ratio'] = data_ret['positive']/data_ret['total'];
+        data_ret['ng_ratio'] = data_ret['negative']/data_ret['total'];
+        data_ret['nt_ratio'] = data_ret['neutral']/data_ret['total'];              
+        console.log(data_ret);
+        return data_ret;
+      });         
 
      return sentiment_airline;
   };

@@ -1,0 +1,128 @@
+
+.container {
+  width: 950px;
+}
+
+#graphic {
+  padding-top: 60px;
+}
+
+
+
+
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: 60px;          
+    height: 28px;         
+    padding: 2px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
+
+
+
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 240px;
+  top: 0px;
+  z-index: 90;
+  padding-bottom: 200px;
+  text-align: justify;     
+
+}
+
+.step {
+  margin-bottom: 200px;
+  font-family: "TiemposTextWeb-Regular","Georgia";
+  font-size: 16px;
+  line-height: 23px;
+  color: #1c1c1c; /*767678;*/
+}
+
+#sections .title {
+  font-family: Arial,Helvetica,"san-serif";
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #262626;
+  line-height: 1.2em;
+}
+
+#extra-space {
+  height: 300px;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+#vis {
+  display: inline-block;
+  position: fixed;
+  top: 60px;
+  z-index: 1;
+  margin-left: 0;
+  /* height: 600px; */
+  /* width: 600px; */
+  /*background-color: #ddd; */
+}
+
+#vis .title {
+  font-size:120px;
+  text-anchor: middle;
+}
+
+#vis .sub-title {
+  font-size:70px;
+  text-anchor: middle;
+}
+
+#vis .sub-sub-title {
+  font-size:50px;
+  text-anchor: middle;
+}
+
+#vis .legend {
+  font-size:12px;
+  text-anchor: middle;
+  font: Arial;    
+
+}
+
+#vis .ylabel {
+  font-size:16px;
+  text-anchor: middle;
+  font: Arial;    
+
+}
+#vis .xlabel {
+  font-size:16px;
+  text-anchor: middle;
+  font: Arial;    
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+}
+
+.highlight {
+  fill: #008080;
+  font-weight: bold;
+}
+
+.cough-arrow {
+  stroke: #000;
+  stroke-width: 4px;
+
+}
+
+

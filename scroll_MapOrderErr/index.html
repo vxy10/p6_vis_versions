@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>US Airline sentiment analysis using Twitter data</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+<div class="container">
+  <div id='graphic'>
+    <div id='sections'>
+      <section class="step"> 
+        <div class="title">Twitter US Airline Sentiment Analysis</div>
+         Here I present analysis of sentiments towards US Airlines as expressed in tweets on twitter. Data set can be found <a  target="_blank" href="https://www.kaggle.com/crowdflower/twitter-airline-sentiment"> here </a> on kaggle.  
+      </section>
+      <section class="step">
+        <div class="title">Data</div>
+        14640 tweets from 7700 users were analyzed. Twitter data was scraped from February of 2015 and contributors were asked to first classify positive, negative, and neutral tweets, followed by categorizing negative reasons (such as "late flight" or "rude service").
+      </section>
+      <section class="step">
+        <div class="title">Overall Sentiment</div>
+        About 60% of the reported sentiments were negative. I therefore focus primarily on negative comments. I next investigate how the sentiments vary across airlines. 
+      </section>
+      <section class="step">
+        <div class="title">Sentiment by airline</div>
+        I next plotted how sentiments varies across different airlines. United had the most tweets with negative sentiment, however, it also has the maximum number of tweets. The number of tweets about an airline may be correlated to the number of planes the airline operates. I next normalize the number of individual sentiments by the total number of tweets to make relative comparisons. 
+      </section>
+      <section class="step">
+        <div class="title">Normalized sentiment by airline</div>
+        I next plotted how the fractions of individual sentiments varies across different airlines. United had the most negative tweets, however, it also has the maximum number of tweets. The number of tweets about an airline may be correlated to the number of planes the airline operates. I next scale the sentiments by the total number of tweets to make relative comparisons. 
+      </section>
+      <section class="step">
+        <div class="title">Reason for negative comments</div>
+       REASONNNNNNNNNNNNNN
+      </section>
+      <section class="step">
+        <div class="title">Reason  by AIRRRRR</div>
+       REASONNNNNNNNNNNNNN by AIRRRRR
+      </section>
+      <section class="step">
+        <div class="title">Reason  by AIRRRRR NORM</div>
+       REASONNNNNNNNNNNNNN by AIRRRRR NORM <a  target="_blank" href = "https://datahub.io/dataset/global-airports/resource/d89fd2bf-7f55-4351-9e93-31077c09797a"> Airport database </a>
+      </section>  
+      <section class="step">
+        <div class="title">fig 7</div>
+       REASONNNNNNNNNNNNNN by AIRRRRR NORM <a  target="_blank" href = "https://datahub.io/dataset/global-airports/resource/d89fd2bf-7f55-4351-9e93-31077c09797a"> Airport database </a>
+      </section>
+      <section class="step">
+        <div class="title">fig 8</div>
+       REASONNNNNNNNNNNNNN by AIRRRRR NORM <a  target="_blank" href = "https://datahub.io/dataset/global-airports/resource/d89fd2bf-7f55-4351-9e93-31077c09797a"> Airport database </a>
+      </section>         
+
+
+      
+    </div>
+    <div id='vis'>
+    </div>
+    <div id="extra-space">
+    </div>
+  </div>
+</div>
+
+
+<script src="js/d3.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="js/queue.js"></script>
+<script src="js/scroller.js"></script>
+<script src="js/sections.js"></script>
+</body>
+</html>

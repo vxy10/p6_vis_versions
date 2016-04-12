@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>US Airline sentiment analysis using Twitter data.</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+<div class="loader"></div>
+
+<div class="container">
+  <div id='graphic'>
+    <div id='sections'>
+      <section class="step"> 
+        <div class="title">Twitter US Airline Sentiment Analysis. </div>
+         Here I present analysis of sentiments towards US Airlines as expressed in tweets on twitter. Data set can be found <a  target="_blank" href="https://www.kaggle.com/crowdflower/twitter-airline-sentiment"> here </a> on kaggle. <a href="http://vxy10.github.io/vivek-resume/index.html" target="_blank">Click here</a> for more information on the author.
+      </section>
+      <section class="step">
+        <div class="title">Data</div>
+        14640 tweets from 7700 users were analyzed. Twitter data was scraped from February of 2015 and contributors were asked to first classify positive, negative, and neutral tweets, followed by categorizing negative reasons (such as "late flight" or "rude service").<h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Overall Sentiment</div>
+        About 60% of the reported sentiments were negative. I therefore focus primarily on negative comments. I next investigate how the sentiments vary across airlines. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Sentiment by airline</div>
+        I next plotted how sentiments varies across different airlines. United had the most tweets with negative sentiment, however, it also has the maximum number of tweets. The number of tweets about an airline may be correlated to the number of planes the airline operates. I next normalize the number of individual sentiments by the total number of tweets to make relative comparisons. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Normalized sentiment by airline</div>
+        I next plotted how the relative number of the individual sentiments varies across different airlines. United had the most negative tweets, however, it also has the most tweets. The number of tweets about an airline may be correlated to the number of planes the airline operates. I therefore divided the tweets with individual sentiments by total number of tweets. It appears that US Airways has relatively higher tweets with negative sentiments. I investigated the reason for negative sentiments. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Reason for negative comments</div>
+       I next plotted the reason for negative comment reported in the tweets. I excluded data where the reason was nor specified or reason was given as 'can't tell'. This reduced the number of negative comments to The plot shows that the most common reason for negative sentiment was customer service issue, followed by late fight and canceled flights. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Reason  by Airline</div>
+       I next grouped the reason for negative comments by airline, and plot them in stacked bar graphs. United had most number of negative tweets, however, the relative distribution of negative comments was different for different airlines. Southwest had the most number of negative comments due to customer service issues. I next normalize the reason for negative comment by total number of negative tweets for each airline. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Normalized Reason  by Airline</div>
+       After normalizing, the contribution of negative tweets due to poorer customer service is higher for Virgin America, Delta and Southwest. US Airways had the least fractions of negative tweets due to customer service issues. <h5> *If graphs don't appear, scroll up or down. </h5>  
+      </section>  
+      <section class="step">
+        <div class="title">Tweets by location</div>
+       I next plotted tweets by location. Of the 14640 tweets, only 841 had data on location. I plotted location of tweets across USA. Tweets appear to be clustered aroung big airports, like New York, Chicago, Los Angeles, etc. I therefore got data for the 30 busiest airports locations from <a  target="_blank" href = "https://en.wikipedia.org/wiki/List_of_the_busiest_airports_in_the_United_States"> wikipedia</a>, and assigned each tweet to the airport nearest to it. I make an assumption that each tweet was made closest to the corresponding airport. This works well in most cases except when airports are very close to each other, for example New york's airprots (JFK, LaGuardia and Newark Liberty) are too close to one another, and most people may choose one or other based on cost, instead of proximity. <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>
+      <section class="step">
+        <div class="title">Main findings</div>
+        <ul>
+            <li> More than 60% of the tweets were negative. </li>
+            <li> United had the most number of tweets, followed by US airways and American airlines </li>
+            <li> United, US airways and American airlines have higher proportions of negative comments. Whereas, Soutwest, Delta and Virgin America had lower proportion of negative comments.  </li>
+            <li> Two main reasons for negative comments were customer service issues and late flights.</li>
+            <li> US Airways had the highest proportion of negative tweets due to customer servce issues.</li>
+            <li> The main reason for negative comments was customer service issue.</li>
+        </ul>
+
+       I next plot tweets for each airline across USA for you to read and explore further. 
+       <h4>Filter Tweets by:</h4>
+            <div class="select">
+                <label>Sentiment</label>
+                <select id = "opts_sentiment">
+                    <option value="None" selected="selected">(None)</option>
+                    <option value="total">All</option>
+                    <option value="negative">Negative</option> 
+                    <option value="positive">Positive</option>
+                    <option value="neutral">Neutral</option>
+                    <!-- and so on... -->   
+              </select>   
+            </div>
+            <div class="select">
+                <label>Airline</label>
+                <select id = "opts_airline">
+                    <option value="None" selected="selected">(None)</option>
+                    <option value="total">All</option>
+                    <option value="united">United</option> 
+                    <option value="usairways">US Airways</option>
+                    <option value="american">American</option>
+                    <option value="southwest">Southwest</option> 
+                    <option value="delta">Delta</option>
+                    <option value="virginamerica">Virgin America</option>
+                    <!-- and so on... -->   
+              </select>   
+            </div>
+            Thanks for visiting. For more information, <a href=http://vxy10.github.io/vivek-resume/index.html target="_blank">http://vxy10.github.io/vivek-resume/index.html </a>
+            <h5> *If graphs don't appear, scroll up or down. </h5>
+      </section>         
+
+
+     
+    </div>
+    <div id='vis'>
+    </div>
+    <div id="extra-space">
+    <h4> Aknowlegements </h4>
+         <ul style="list-style-type:disc">
+            <li> This project was inspired by one of my favorite data-based article on soccer world cup players and how they are connected by various clubs. <a href=http://www.nytimes.com/interactive/2014/06/20/sports/worldcup/how-world-cup-players-are-connected.html?_r=0 target="_blank"> The clubs that connect the world cup </a>  </li>
+            <li>This project was built on demo example in <a href=http://vallandingham.me/scroller.html target="_blank"> So you want to build a scroller </a> </li>
+            <li>Udacity coaches and mentors. Especially <a href=https://discussions.udacity.com/users/myles/activity target="_blank"> Myles</a> who patiently answered all the questions I had during the project.</li>
+            <li> <a href=http://bl.ocks.org/ target="_blank"> http://bl.ocks.org/ </a> for numerous examples.</li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+  $(".loader").fadeOut("slow");
+})
+</script>
+<script src="js/d3.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="js/queue.js"></script>
+<script src="js/scroller.js"></script>
+<script src="js/sections.js"></script>
+
+</body>
+</html>

@@ -156,12 +156,7 @@ var path = d3.geo.path()
     .projection(projection);
 
 
-var tooltip_barOverall = d3.select("body")
-  .append("div")
-  .style("position", "absolute")
-  .style("z-index", "10")
-  .style("visibility", "hidden")
-  .text("a simple tooltip");    
+  
 
 
 
@@ -1601,14 +1596,35 @@ function draw_US_Map_airports(overall_LatLongAirport,overall_LatLongAirline,fig_
                    "United":"united",
                    "Virgin America":"virginamerica"};
 
+
+
+
   overall_LatLongAirline.forEach(function (d,i) {
     for (x in airline_order){ 
         if (d[x] != null) {    
+
+         var airline_name = airline_order[x];
+         var count_var = d[x];
+         var tip = d3.tip()
+                    .attr('class', 'd3-tip circle-tip ' + fig_name + " "+airline_name+"-circle")
+                    .offset([-10, 0])
+                    .html(function(d) {
+                      return "<span style='color:black'>" + count_var + "</span>";
+                    });  
+  
         g.append("circle")
           .attr("class", fig_name + " "+airline_order[x]+"-circle")
           .attr('r', Math.sqrt(4*d[x]))
           .attr("transform", "translate(" + projection([d.lon,d.lat]) + ")")
-          .attr("opacity",0);}
+          .attr("opacity",0)
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
+
+       
+        g.call(tip);
+            
+        }
+
     
     }
   });
@@ -2195,6 +2211,10 @@ function updateLegend(newData) {
               .duration(600)
               .attr('fill', color_names[newData])
               .attr("opacity",.5)
+
+    
+    d3.select('.'+newData +'-tip').moveToBack();
+          
 
 
 

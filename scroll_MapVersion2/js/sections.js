@@ -233,6 +233,10 @@ var path = d3.geo.path()
       overall_sentiment = [];
       overall_reason=[];
       overall_reasonairline = [];
+      overall_LatLong = [];
+      overall_LatLongAirport = [];
+      overall_LatLongAirline = [];
+
       setupSections(rawData);
 
       
@@ -1139,9 +1143,7 @@ function draw_BarOverall(overall_sentiment){
       .attr("fill", function(d,i) { return barColors[i]; })
       .attr("width", function(d) { return xBarScale(d.values)-75;} )
       .attr("height", .8*yBarScale.rangeBand())
-      .on("mouseover", function(){return tooltip.style("visibility", "visible");})
-      .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+      
 
 
     g.append("text")

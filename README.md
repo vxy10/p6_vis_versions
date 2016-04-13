@@ -8,9 +8,10 @@
 ** SUMMARY ** 
 
 
-### Final Version of Visualization
-1. [Explanatory visualization of Airbnb data](http://vxy10.github.io/p6_vis_versions/scroll_Map_version1/index.html)
-2. [Exploratory visualization of Airbnb data](http://cdn.rawgit.com/cyuancheng/Data_Visualization_D3js/master/index_re10.html)
+### Visualization
+The latest version of the visualization can be found [here](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html). This visualization was obtaine
+1. [First draft](http://vxy10.github.io/p6_vis_versions/scroll_Map_version1/index.html)
+2. [First submission](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html)
 
 ###Design
 ####1. Data clean and manipulation

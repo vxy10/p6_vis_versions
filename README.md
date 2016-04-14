@@ -1,7 +1,7 @@
 ##Project 6: Make Effective Data Visulization | Data Visualization and D3.js
 
 - Author:  Vivek Yadav (vivek DOT yadav AT gmail DOT com)
-- Last updated: Nov 13, 2015
+- Last updated: Apr 14, 2016
 
 ###Summary
 

@@ -5,11 +5,13 @@
 
 ###Summary
 
-** SUMMARY ** 
+For this project I analyzed the sentiments expressed in twitter feeds towards US airlines for February 15. I downloaded data from [kaggle](https://www.kaggle.com/crowdflower/twitter-airline-sentiment). I conducted the initial data processing in Python. In this step, I took data of tweets that had location information and extracted longitude and latitude from them. I then obtained the list of [30 busiest airports in the United States from Wikipedia](https://en.wikipedia.org/wiki/List_of_the_busiest_airports_in_the_United_States), and assigned each tweet with location data to an airport based on proximity. I assumed that a tweet about an airline came from the airport closest to the location of tweet. After this, I exported data as CSV and performed further analysis in javascript directly. 
 
+Link to the final project: [US Airline Twitter Sentiment Analysis](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html)
 
 ### Visualization
-The latest version of the visualization can be found [here](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html). This visualization was obtaine
+The latest version of the visualization can be found [here](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html). This visualization was obtained 
+
 1. [First draft](http://vxy10.github.io/p6_vis_versions/scroll_Map_version1/index.html)
 2. [First submission](http://vxy10.github.io/p6_vis_versions/scroll_MapVersion2/index.html)
 
@@ -46,7 +48,13 @@ ADD
 
 ###Feedback
 
-I obtained lots of helpful feedback and comments from [Udacity discussion forum](https://discussions.udacity.com/t/feedback-for-project-6-us-airline-sentiment-analysis-using-twitter-data/163274/2) and [Google+](https://plus.google.com/communities/116797052510270749486?gclid=Cj0KEQjwwIKxBRDKhOz7ytT30vkBEiQAT1NaPS05CAXdYdk1Yu7ymp6T8ZGMhTJ0lMeqMdwFyCpF2bsaAkHc8P8HAQ). The selected feedback and comments are below:
+I obtained lots of helpful feedback and comments from [Udacity discussion forum](https://discussions.udacity.com/t/feedback-for-project-6-us-airline-sentiment-analysis-using-twitter-data/163274/2) and [Google+](https://plus.google.com/communities/116797052510270749486?gclid=Cj0KEQjwwIKxBRDKhOz7ytT30vkBEiQAT1NaPS05CAXdYdk1Yu7ymp6T8ZGMhTJ0lMeqMdwFyCpF2bsaAkHc8P8HAQ). The main points from and comments are below:
+
+- _Initially as the page loads, as the elements are being generated, it is a distracting effect_. I fixed this by adding a loading gif which shows while the graphics objects are being created. 
+- _the content should be closer to the center of the page vertically_. I did not include this change because I wanted to keep the graphs section larger than the text section. 
+- _There are no instructions as to how to navigate to the next page_. I added text "*Scroll down to read more." on the first page. 
+- _On the "Tweets By Locations" page, the transition (of the graph) could be slowed a little (as by the time that the page comes into focus that transition is finished)_. I increased the transition time for map to appear to 400 ms. 
+- _The plots Reason by airline don't have a legend, nor do they have a y axis label_. I added legend and axis labels.
 
 #####1. Myles Udacity 
 
@@ -76,25 +84,40 @@ Excellent presentation!
 
 Myles
 
+#####2. Liang Sun (collegue) 
 
-2. Jay Teguh (Google+)
+The whole impression is that the visualization is very clean,concise and well-organized.
 
-	- How many room places are there in AirBnB? Perhaps a good idea to include this under Room Type chart.
-	- What year was the data from?
-	- Due to different sizes of the circles in price vs. availability, it is sometimes hard to compare price and availability between each data point. Maybe a button to disable sizes, in addition to a faster tooltip display would help.
-	- Price varies with time could benefit from tooltips too. I use d3-tip in my project and it works really great (I did not use html default tip since it takes awhile to show them and users are impatient).
-	- Remember that the rubric requires you to have a complete documentation of your functions. The functions in your projects seems to be sparsely commented as it is now. My reviewer suggested me to use jsdoc and that makes documentation really easy, but in your case you would need to put your js code into a separate file if you wish to do so.
-	- As you get more feedback you'll notice several interesting findings readers have noticed. You can create stories from them, then later create quick-link buttons that will automatically adjust the plots to tell the story and pops up an explanation you wish to tell your readers (martini glass narrative structure).﻿
+My question is about the data itself. Intuitively, people are more likely to complain than praise service online. The data may be not an adequate description of the whole population of customers, but good for the analysis of comparison among different airlines and reasons of negative sentiments. 
 
-3. Piyush Agarwal (Google+)
+United, US Airways, and American have a bigger fraction of negative sentiments than the other three.  The reasons for negative sentiments have different weights for different airlines. In general, customer service issues and cancelled flights are the most common reasons for all airlines. 
 
-	- The dashboard looks exhaustive, as there are so many charts. Maybe if you could arrange them in a better way and provide a detailed insight into each, that would be great.
-	- I don't know the dataset but is it possible to figure out that what is the most busiest time for the bookings, i.e., at what time of the year there are max. number of people using these Airbnb locations.
-	- Do people like staying in the shared rooms/private?
-	- Number of reviews is higher in the Central East region as compared to any other region I have never been to SF, but from the visualizations, Presidio seems to be a very expensive and high-class neighborhood, as there are no shared/single rooms available there and also its very expensive.
-	- There is a lot of variation in the Price/Night and it looks like you can find a place in San Francisco, starting from anywhere between $40 to about $400
-	- Variation of price with time graph can be done better if we move the axis away from 0.
-	- The colors are fading in Price by Month and Price by Day graphs. Not sure do they have some significance (like price is higher with darker colors)﻿
+This analysis gives us a sense of what customers care about and unsatisfied with the airlines, and how airlines can improve their service and customers' satisfaction. 
+
+You can add legend to the graph "reasons by airline" and the normalized one for this.
+
+#####3. Melissa Kilby (collegue) 
+
+Sorry just get to it now.
+
+1. What do you notice in the visualization?
+
+⋅⋅⋅ The plots Reason by airline don't have a legend...nor do they have a y axis label...
+
+2.  What questions do you have about the data?
+
+... In how far are complaints: customer service and late flights related to a specific airport location/connecting flights...not sure if phrase this correctly, the big airline offer a bigger net of connections, of course there are more delays and problems, etc, not sure if you can get that link with the data available...
+
+3. What relationships do you notice?
+
+... I see two groups of airlines, the big ones that offer more connections/flights and maybe suffer more from delays, etc...the smaller airlines operate more locally...maybe less overall delays, are there statistics out there on average delays per airline you can work in too?
+4. What do you think is the main takeaway from this visualization?
+... looking at maps number of tweets peaks at the big airports that are hubs for connecting flights...people only tweet when they can complain lol, maybe due to them being stuck at the airport and not having anything better to do haha
+5. Is there something you don’t understand in the graphic?
+... No all super easy to follow except the missing legend I had to scroll up to remind myself of the category
+
+I hope this helps, but again it looks really awesome and every single statement is super clear and makes totally sense!!!
+
 
 
 ###Resources
